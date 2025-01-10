@@ -76,4 +76,16 @@ public class BookingStepDefs {
                 .log().all()
                 .extract().response();
     }
+
+    @Given("the user submits all mandatory details including {int} digit phone number to book a hotel room")
+    public void theUserSubmitsAllMandatoryDetailsIncludingDigitPhoneNumberToBookAHotelRoom(int arg0) throws IOException {
+        request = given();
+        request.header("Content-Type", "application/json");
+        response = request.given()
+                .body(utilityClass.readMaxDigitPhoneNumberJsonInputFile())
+                .post(utilityClass.getValueOf("post.booking.url"))
+                .then()
+                .log().all()
+                .extract().response();
+    }
 }

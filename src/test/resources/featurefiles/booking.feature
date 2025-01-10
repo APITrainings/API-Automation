@@ -18,3 +18,14 @@ Feature: Hotel Room Booking
   Scenario: User successfully books a hotel room with only mandatory values.
     Given the user submits the request with only mandatory details to book a hotel room
     Then the user should be returned with a booking confirmation
+
+  Scenario: User successfully books a hotel room with all mandatory values including phone number with 21 digits.
+    Given the user submits all mandatory details including 21 digit phone number to book a hotel room
+    Then the user should be returned with a booking confirmation
+
+  Scenario: User successfully books a hotel room with valid request
+    Given the customer provides all necessary booking details
+    When the booking request is submitted
+    Then the booking should be confirmed
+    And a unique booking ID should be provided
+    And the customer should see their booking details reflected correctly

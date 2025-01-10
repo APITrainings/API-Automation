@@ -10,6 +10,7 @@ public class UtilityClass {
     //<editor-fold desc="Variables">
     private final Properties properties;
     private final String validJsonFilePath = "src/test/resources/jsonFiles/validbooking.json";
+    private final String maxDigitPhoneNumberJsonFilePath = "src/test/resources/jsonFiles/21digitPhoneNumberJsonFilePath.json";
     private final String onlyMandatoryJsonFilePath = "src/test/resources/jsonFiles/onlyMandatoryValuesbooking.json";
     private final String invalidJsonFilePath = "src/test/resources/jsonFiles/invalidbooking.json";
     private final String invalidPhoneNumber = "src/test/resources/jsonFiles/invalidPhoneNumber.json";
@@ -50,6 +51,10 @@ public class UtilityClass {
 
     public String readOnlyMandatoryJsonInputFile() throws IOException {
         return readJsonFile(onlyMandatoryJsonFilePath);
+    }
+
+    public String readMaxDigitPhoneNumberJsonInputFile() throws IOException {
+        return readJsonFile(maxDigitPhoneNumberJsonFilePath);
     }
 
     public String readInvalidJsonInputFile() throws IOException {
