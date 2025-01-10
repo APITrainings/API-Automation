@@ -11,6 +11,7 @@ public class UtilityClass {
     private final Properties properties;
     private final String validJsonFilePath = "src/test/resources/jsonFiles/validbooking.json";
     private final String invalidJsonFilePath = "src/test/resources/jsonFiles/invalidbooking.json";
+    private final String invalidPhoneNumber = "src/test/resources/jsonFiles/invalidPhoneNumber.json";
     //</editor-fold>
 
     //<editor-fold desc="Private Methods">
@@ -47,7 +48,11 @@ public class UtilityClass {
     }
 
     public String readInvalidJsonInputFile() throws IOException {
-        return readJsonFile(validJsonFilePath);
+        return readJsonFile(invalidJsonFilePath);
+    }
+
+    public String readInvalidPhoneNumber() throws IOException {
+        return readJsonFile(invalidPhoneNumber);
     }
     //</editor-fold>
 }

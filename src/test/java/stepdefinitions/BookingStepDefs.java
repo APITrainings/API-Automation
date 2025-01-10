@@ -52,4 +52,16 @@ public class BookingStepDefs {
     public void theUserShouldNotBeReturnedWithABookingConfirmation() {
         Assert.assertNotEquals(response.getStatusCode(), 201);
     }
+
+    @Given("the user submits all mandatory details with invalid phone number to book a hotel room")
+    public void theUserSubmitsAllMandatoryDetailsWithInvalidPhoneNumberToBookAHotelRoom() throws IOException {
+        request = given();
+        request.header("Content-Type", "application/json");
+        response = request.given()
+                .body(utilityClass.readInvalidPhoneNumber())
+                .post(utilityClass.getValueOf("post.booking.url"))
+                .then()
+                .log().all()
+                .extract().response();
+    }
 }
