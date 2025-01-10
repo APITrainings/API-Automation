@@ -10,7 +10,7 @@ public class UtilityClass {
     //<editor-fold desc="Variables">
     private final Properties properties;
     private final String validJsonFilePath = "src/test/resources/jsonFiles/validbooking.json";
-    private final String maxDigitPhoneNumberJsonFilePath = "src/test/resources/jsonFiles/21digitPhoneNumberJsonFilePath.json";
+    private final String maxDigitPhoneNumberJsonFilePath = "src/test/resources/jsonFiles/maxDigitPhoneNumberJsonFilePath.json";
     private final String onlyMandatoryJsonFilePath = "src/test/resources/jsonFiles/onlyMandatoryValuesbooking.json";
     private final String invalidJsonFilePath = "src/test/resources/jsonFiles/invalidbooking.json";
     private final String invalidPhoneNumber = "src/test/resources/jsonFiles/invalidPhoneNumber.json";

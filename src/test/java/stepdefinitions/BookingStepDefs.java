@@ -1,7 +1,9 @@
 package stepdefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -14,7 +16,6 @@ import static io.restassured.RestAssured.given;
 
 public class BookingStepDefs {
 
-    String strResponse;
     RequestSpecification request;
     Response response;
     UtilityClass utilityClass = new UtilityClass();
@@ -87,5 +88,35 @@ public class BookingStepDefs {
                 .then()
                 .log().all()
                 .extract().response();
+    }
+
+    @Given("the customer provides all necessary booking details")
+    public void theCustomerProvidesAllNecessaryBookingDetails() throws IOException {
+        RequestSpecification request = given();
+        request.header("Content-Type", "application/json");
+        response = (Response) request.given()
+                .body(utilityClass.readValidJsonInputFile());
+
+    }
+
+    @When("the booking request is submitted")
+    public void theBookingRequestIsSubmitted() {
+        request.post(utilityClass.getValueOf("post.booking.url"))
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
+    @Then("the booking should be confirmed with a unique booking ID")
+    public void theBookingShouldBeConfirmedWithAUniqueBookingID() {
+        request.post(utilityClass.getValueOf("get.booking.url"))
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
+    @And("the customer should see their booking details reflected correctly")
+    public void theCustomerShouldSeeTheirBookingDetailsReflectedCorrectly() {
+        Assert.assertEquals(response.getStatusCode(), 201);
     }
 }

@@ -26,6 +26,5 @@ Feature: Hotel Room Booking
   Scenario: User successfully books a hotel room with valid request
     Given the customer provides all necessary booking details
     When the booking request is submitted
-    Then the booking should be confirmed
-    And a unique booking ID should be provided
+    Then the booking should be confirmed with a unique booking ID
     And the customer should see their booking details reflected correctly
