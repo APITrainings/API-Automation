@@ -3,6 +3,10 @@ Feature: API Test Automation - User books a room
 
 #  Booking website swagger URL : https://automationintesting.online/booking/swagger-ui/index.html#/
 
-  Scenario: User is able to book a room.
+  Scenario: User is able to book a hotel room.
     Given the user submits all mandatory details to book a hotel room
     Then the user should be returned with a booking confirmation
+
+  Scenario: User is unable to book a hotel room.
+    Given the user submits all mandatory details except email address to book a hotel room
+    Then the user should not be returned with a booking confirmation

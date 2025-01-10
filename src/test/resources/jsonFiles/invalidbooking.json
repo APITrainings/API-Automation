@@ -1,12 +1,11 @@
 {
   "bookingdates": {
-    "checkin": "",
-    "checkout": ""
+    "checkin": "2025-01-20",
+    "checkout": "2025-01-21"
   },
   "depositpaid": false,
   "firstname": "Adam",
   "lastname": "Smith",
   "roomid": 1,
-  "email": "Adam.Smith@gmail.com",
   "phone": "98765432101"
 }
