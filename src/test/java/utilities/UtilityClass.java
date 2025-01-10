@@ -1,5 +1,6 @@
 package utilities;
 
+import io.restassured.path.json.JsonPath;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -63,6 +64,12 @@ public class UtilityClass {
 
     public String readInvalidPhoneNumber() throws IOException {
         return readJsonFile(invalidPhoneNumber);
+    }
+
+    public String getString(String responseString, String path){
+        JsonPath jsonPath = new JsonPath(responseString);
+        String value = jsonPath.getString(path);
+        return value;
     }
     //</editor-fold>
 }

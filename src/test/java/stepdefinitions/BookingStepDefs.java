@@ -17,6 +17,7 @@ import static io.restassured.RestAssured.given;
 public class BookingStepDefs {
 
     RequestSpecification request;
+    String strResponse;
     Response response;
     UtilityClass utilityClass = new UtilityClass();
 
@@ -30,11 +31,13 @@ public class BookingStepDefs {
                 .then()
                 .log().all()
                 .extract().response();
+        strResponse = response.asString();
     }
 
     @Then("the user should be returned with a booking confirmation")
     public void theUserShouldBeReturnedWithABookingConfirmation() {
         Assert.assertEquals(response.getStatusCode(), 201);
+        utilityClass.getString(strResponse,"bookingid");
     }
 
     @Given("the user submits all mandatory details except email address to book a hotel room")
@@ -47,11 +50,13 @@ public class BookingStepDefs {
                 .then()
                 .log().all()
                 .extract().response();
+        strResponse = response.asString();
     }
 
     @Then("the user should not be returned with a booking confirmation")
     public void theUserShouldNotBeReturnedWithABookingConfirmation() {
         Assert.assertNotEquals(response.getStatusCode(), 201);
+        utilityClass.getString(strResponse,"bookingid");
     }
 
     @Given("the user submits all mandatory details with invalid phone number to book a hotel room")
@@ -64,6 +69,7 @@ public class BookingStepDefs {
                 .then()
                 .log().all()
                 .extract().response();
+        strResponse = response.asString();
     }
 
     @Given("the user submits the request with only mandatory details to book a hotel room")
@@ -76,6 +82,7 @@ public class BookingStepDefs {
                 .then()
                 .log().all()
                 .extract().response();
+        strResponse = response.asString();
     }
 
     @Given("the user submits all mandatory details including {int} digit phone number to book a hotel room")
@@ -88,6 +95,7 @@ public class BookingStepDefs {
                 .then()
                 .log().all()
                 .extract().response();
+        strResponse = response.asString();
     }
 
     @Given("the customer provides all necessary booking details")
@@ -105,18 +113,12 @@ public class BookingStepDefs {
                 .then()
                 .log().all()
                 .extract().response();
-    }
-
-    @Then("the booking should be confirmed with a unique booking ID")
-    public void theBookingShouldBeConfirmedWithAUniqueBookingID() {
-        request.post(utilityClass.getValueOf("get.booking.url"))
-                .then()
-                .log().all()
-                .extract().response();
+        strResponse = response.asString();
     }
 
     @And("the customer should see their booking details reflected correctly")
     public void theCustomerShouldSeeTheirBookingDetailsReflectedCorrectly() {
         Assert.assertEquals(response.getStatusCode(), 201);
+        utilityClass.getString(strResponse,"bookingid");
     }
 }
