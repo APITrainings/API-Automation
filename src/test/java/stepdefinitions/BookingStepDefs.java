@@ -64,4 +64,16 @@ public class BookingStepDefs {
                 .log().all()
                 .extract().response();
     }
+
+    @Given("the user submits the request with only mandatory details to book a hotel room")
+    public void theUserSubmitsTheRequestWithOnlyMandatoryDetailsToBookAHotelRoom() throws IOException {
+        request = given();
+        request.header("Content-Type", "application/json");
+        response = request.given()
+                .body(utilityClass.readOnlyMandatoryJsonInputFile())
+                .post(utilityClass.getValueOf("post.booking.url"))
+                .then()
+                .log().all()
+                .extract().response();
+    }
 }
